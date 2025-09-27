@@ -1,0 +1,77 @@
+@model testingassignment2.Models.CarRental
+
+@{
+    ViewData["Title"] = "Book a Car";
+}
+
+<h1 class="mb-4">Book a Car</h1>
+<p class="text-muted">Complete the form below to reserve one of the available vehicles.</p>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col-md-6">
+        <label asp-for="CustomerName" class="form-label"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CustomerEmail" class="form-label"></label>
+        <input asp-for="CustomerEmail" class="form-control" />
+        <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CustomerPhone" class="form-label"></label>
+        <input asp-for="CustomerPhone" class="form-control" />
+        <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CarId" class="form-label"></label>
+        <select asp-for="CarId" class="form-select" asp-items="ViewBag.Cars">
+            <option value="">Select a car</option>
+        </select>
+        <span asp-validation-for="CarId" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="StartDate" class="form-label"></label>
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="EndDate" class="form-label"></label>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="PickupLocation" class="form-label"></label>
+        <input asp-for="PickupLocation" class="form-control" />
+        <span asp-validation-for="PickupLocation" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="DropoffLocation" class="form-label"></label>
+        <input asp-for="DropoffLocation" class="form-control" />
+        <span asp-validation-for="DropoffLocation" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit Reservation</button>
+        <a asp-controller="Cars" asp-action="Index" class="btn btn-outline-secondary ms-2">View Available Cars</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
