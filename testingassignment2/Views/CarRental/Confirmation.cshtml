@@ -1,0 +1,71 @@
+@model testingassignment2.Models.CarRental
+@using testingassignment2.Models
+
+@{
+    ViewData["Title"] = "Rental Confirmation";
+    var selectedCar = ViewBag.Car as Car;
+}
+
+<h1 class="mb-4">Reservation Confirmed</h1>
+<p class="lead">Thanks, @Model.CustomerName! Your booking details are summarized below.</p>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Trip Details</h5>
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Pickup Date</dt>
+            <dd class="col-sm-8">@Model.StartDate.ToString("D")</dd>
+
+            <dt class="col-sm-4">Return Date</dt>
+            <dd class="col-sm-8">@Model.EndDate.ToString("D")</dd>
+
+            <dt class="col-sm-4">Pickup Location</dt>
+            <dd class="col-sm-8">@Model.PickupLocation</dd>
+
+            <dt class="col-sm-4">Drop-off Location</dt>
+            <dd class="col-sm-8">@Model.DropoffLocation</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Vehicle</h5>
+        @if (selectedCar is not null)
+        {
+            <p class="mb-1"><strong>@selectedCar.Model</strong></p>
+            <p class="text-muted mb-0">Registration: @selectedCar.RegistrationNumber</p>
+        }
+        else
+        {
+            <p class="text-muted">The selected vehicle details are currently unavailable.</p>
+        }
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Contact</h5>
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Model.CustomerEmail</dd>
+
+            @if (!string.IsNullOrWhiteSpace(Model.CustomerPhone))
+            {
+                <dt class="col-sm-4">Phone</dt>
+                <dd class="col-sm-8">@Model.CustomerPhone</dd>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Notes))
+            {
+                <dt class="col-sm-4">Notes</dt>
+                <dd class="col-sm-8">@Model.Notes</dd>
+            }
+        </dl>
+    </div>
+</div>
+
+<div class="d-flex gap-2">
+    <a asp-action="Create" class="btn btn-primary">Make Another Reservation</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Back to Home</a>
+</div>
