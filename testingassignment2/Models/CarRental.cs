@@ -23,7 +23,7 @@ namespace testingassignment2.Models
         [Display(Name = "Email Address")]
         public string CustomerEmail { get; set; }
 
-        [Phone]
+        [RegularExpression(@"^[0-9+\-()\s]{7,20}$", ErrorMessage = "Please enter a valid contact number using digits, spaces, or +, -, ().")]
         [Display(Name = "Contact Number")]
         public string CustomerPhone { get; set; }
 
