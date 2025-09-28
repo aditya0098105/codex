@@ -5,9 +5,13 @@ namespace testingassignment2.Models
 {
     public class CarRental
     {
+        public int Id { get; set; }
+
         [Display(Name = "Car")]
         [Range(1, int.MaxValue, ErrorMessage = "Please select a car.")]
         public int CarId { get; set; }
+
+        public Car Car { get; set; }
 
         [Required]
         [StringLength(100)]

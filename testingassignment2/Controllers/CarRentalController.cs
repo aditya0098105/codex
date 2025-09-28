@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using testingassignment2.Models;
 
 namespace testingassignment2.Controllers
@@ -13,6 +14,16 @@ namespace testingassignment2.Controllers
         public CarRentalController(AppDbContext context)
         {
             _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            var rentals = _context.CarRentals
+                .Include(r => r.Car)
+                .OrderBy(r => r.StartDate)
+                .ToList();
+
+            return View(rentals);
         }
 
         [HttpGet]

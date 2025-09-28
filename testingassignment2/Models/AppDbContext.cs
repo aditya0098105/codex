@@ -12,5 +12,7 @@ namespace testingassignment2.Models
 
         // Ye property tumhare Car model ke liye ek table banayegi (Cars)
         public DbSet<Car> Cars { get; set; }
+
+        public DbSet<CarRental> CarRentals { get; set; }
     }
 }
