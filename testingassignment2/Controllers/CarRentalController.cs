@@ -55,6 +55,9 @@ namespace testingassignment2.Controllers
                 return View(rental);
             }
 
+            _context.CarRentals.Add(rental);
+            _context.SaveChanges();
+
             var selectedCar = _context.Cars.FirstOrDefault(c => c.Id == rental.CarId);
             ViewBag.Car = selectedCar;
 
